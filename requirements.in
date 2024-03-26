@@ -1,0 +1,12 @@
+jupyter
+Flask
+Python-dotenv
+
+pytest
+
+codecov
+coverage
+coveralls
+pytest-cov
+
+flake8

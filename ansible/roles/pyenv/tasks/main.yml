@@ -1,0 +1,14 @@
+---
+- name: install pyenv using brew
+  homebrew:
+    name: pyenv
+    state: present
+
+- name: configure zsh
+  blockinfile:
+    path: /Users/rblack/.zshrc
+    block: |
+      # pyenv config
+      eval "$(pyenv init -)"
+      export PYENV_ROOT="$HOME/.pyenv"
+      command -v pyenv  >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
