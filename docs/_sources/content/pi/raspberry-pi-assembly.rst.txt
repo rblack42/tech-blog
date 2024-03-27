@@ -1,0 +1,70 @@
+Raspberry Pi Assembly Language
+##############################
+
+.. include:: ../../references.inc
+
+Since I have retired, I have stopped using assembly language at any level. As
+part of my work on parallel programming, I find myself engaged in building
+several light-weight clusters to test high performance coding ideas.
+
+I have found that a good way to figure out how things work in code ay the most
+basic level on a machine is ot generate assembly language code while processing
+a high ;evel program. Fortunately, many compilers make this a simple task. In
+this note, we will create a simple **C** program, and then generate assembly
+language using the *Gun* **C** compiler:
+
+.. literalinclude::  code/hello.c
+   :language: c
+   :linenos:
+
+The goal here is to process this file on the *Pi* and see what happens. Since
+this is a console application, we can use **ssh** to do this work.
+
+Transferring Files
+==================
+
+*SSH* can be used to transfer files. In this example, I am assuming you have set
+up an alias for the machine (mine is **picam**) and have also set up your *SSH*
+key file so you can log in with no password. Once that has been set up, this
+should work:
+
+.. command-output:: ssh picam 'uptime'
+
+*SSH* even supports running commands from a text file. Here is an example:
+
+.. command-output:: cat ex2.txt
+
+The normal *SSH* command to run this locally is:
+
+.. code-block:: shell
+
+   ssh picam < commands.txt
+
+Unfortunately, the *Sphinx* extension I use to include program output in my
+documents cannot handle file redirection like this. We could transfer the
+command file to the *Pi* and run it there but we would miss the individual
+command output results. A solution (maybe not the best) is to create a simple
+local |PY| program that reads our command file and runs the *SSH* commands for
+us. (|PY| is great for creating simple automation tasks like this (see
+:cite:t:`Weigart:2015`).
+
+Here is a basic |PY| snippet using this approach:
+
+.. literalinclude::  ../../code/ex3.py
+   :language: python
+   :linenos:
+
+And here is the program output:
+
+.. command-output:: python code/ex3.py
+
+This works! We now need to wrap this up in a loop that reads a line from the
+command file and creates the list of command parts. |PY| is up to this job!
+
+.. literalinclude::  ../../code/ex1.txt
+   :language: python
+   :linenos:
+
+.. command-output::  python code/ex4.py code/ex1.txt
+
+

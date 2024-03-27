@@ -1,0 +1,4 @@
+uname -a
+uptime
+df -H
+

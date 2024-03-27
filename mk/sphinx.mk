@@ -1,3 +1,7 @@
+LOCALDIR = docs/
+REMOTEDIR = ../www.co-pylit.org/www/tech-blog/
+SSH_PORT = 5224
+
 .PHONY: docsprep
 docsprep:
 	mkdir -p docs/_images/tikz
@@ -7,12 +11,8 @@ docs:	changes	## run Sphinx to build html pages
 	cd rst && \
 	sphinx-build -b html -d _build/doctrees . ../docs
 
-.PHONY: testdocs
-testdocs:	## run tests on ci
-	cd rst && \
-		sphinx-build -nW -b html -d _build/doctrees . ../docs
-	cd rst && \
-		sphinx-build -b linkcheck -d _build/doctrees . ../docs
+.PHONY: spelling
+spelling:	## run tests on ci
 	cd rst && \
 		sphinx-build -b spelling -d _build/doctrees . ../docs
 
@@ -31,7 +31,6 @@ pdf:	## build PDF docs
 
 .PHONY: sync
 sync:	## upload docs to co-pylit
-	cd rst && \
-	rsync -avz -e "ssh -p 5224" _build/ www.co-pylit.org:tech-blog/
+	rsync -avz -e "ssh -p $(SSH_PORT)" $(LOCALDIR) www.co-pylit.org:$(REMOTEDIR)
 
 

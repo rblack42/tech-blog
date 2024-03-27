@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SSH Remote Control &#8212; Tech Blog 0.1.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pydoctheme.css?v=a35cb577" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../../_static/pygments_dark.css?v=b20cc3f5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/ansi.css?v=7c420bc0" />
+    
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Bibliography" href="../../zbibliography.html" />
+    <link rel="prev" title="Sphinx Testing" href="../../sphinx-testing.html" /><link rel="stylesheet" href="../../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../../_static/py.svg" />
+            <script type="text/javascript" src="../../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../../_static/menu.js"></script>
+            <script type="text/javascript" src="../../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../../_static/themetoggle.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../../_static/py.svg" alt="Python logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" />
+                <input type="submit" value="Go"/>
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">SSH Remote Control</a><ul>
+<li><a class="reference internal" href="#developing-for-a-cluster">Developing for a cluster</a></li>
+<li><a class="reference internal" href="#test-setup">Test Setup</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../../sphinx-testing.html"
+                          title="previous chapter">Sphinx Testing</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../../zbibliography.html"
+                          title="next chapter">Bibliography</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/content/pi/ssh-remote-control.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </nav>
+    </div>
+</div>
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../zbibliography.html" title="Bibliography"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../../sphinx-testing.html" title="Sphinx Testing"
+             accesskey="P">previous</a> |</li>
+          <li><img src="../../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../../index.html">Tech Blog 0.1.0 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">SSH Remote Control</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box" />
+          <input type="submit" value="Go" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="ssh-remote-control">
+<h1>SSH Remote Control<a class="headerlink" href="#ssh-remote-control" title="Link to this heading">¶</a></h1>
+<p>As part of my research work, I maintain several small clusters.</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Cluster Systems</span><a class="headerlink" href="#id2" title="Link to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Processor</p></th>
+<th class="head"><p>Num</p></th>
+<th class="head"><p>Cores</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Intel-I5</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pi 3</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-even"><td><p>Pi 4</p></td>
+<td><p>7</p></td>
+<td><p>14</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pi 5</p></td>
+<td><p>4</p></td>
+<td><p>20</p></td>
+</tr>
+</tbody>
+</table>
+<p>I have a 4-processor cluster using Intel <em>NUC</em> computers, a 4-processor system
+on using Raspberry Pi 3 machines, another 7-processor Raspberry Pi 4 system, and
+a 4-processor Raspberry Pi 5 system.  All of these clusters run some form of
+Linux. I have all set up for SSH access with no password required. My intent is
+to use these clusters as test beds, to experiment with parallel processing
+techniques.  Logging in to a console on each machine using <em>SSH</em> is simple
+enough, but repeatedly login in and running commands on a bunch of machines is
+painful. I do use the <em>Ansible</em> tool to manage basic configurations on all of
+these machines, which significantly improves my life.</p>
+<section id="developing-for-a-cluster">
+<h2>Developing for a cluster<a class="headerlink" href="#developing-for-a-cluster" title="Link to this heading">¶</a></h2>
+<p>In most cases the code that runs on a cluster is written in some high level
+language like <em>C++</em> or modern <em>Fortran</em>. I use a <em>MacBook Air</em> as my primary
+laptop, and it is all set up to produce documents (like this one) and build <em>Python</em>
+applications. My goal is to use <em>Python</em> to create a simple automation technique
+that lets me send a list of commands to one or more machines and collect the
+console output for display on my management laptop. That output will be included
+in my documentation using the <em>Sphine</em> <strong>programoutput</strong> extension.</p>
+<p>The inspiration for this experiment is <em>Ansible</em>, but I want to have more
+control over the command sequence and the collection of output from a remote
+task.</p>
+<p>Time to improve the process.</p>
+</section>
+<section id="test-setup">
+<h2>Test Setup<a class="headerlink" href="#test-setup" title="Link to this heading">¶</a></h2>
+<p>I have a simple Raspberry Pi 3 running on the top of my office bookcase. That
+machine has been running for over a year and can be accessed using a <em>Wifi</em>
+connection.</p>
+<p>In this example, I have set up an alias for the machine (mine is <strong>picam</strong>) that
+dets up the remote machine <strong>IP</strong> address. I have also added my <em>SSH</em> public key
+to the <strong>known_hosts</strong> list on the <em>Pi</em>. This allows  logging in with no
+password.</p>
+<p>Once all of this has been set up, this should work:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ ssh picam &#39;uptime&#39;
+ 08:31:12 up 246 days, 18:46,  2 users,  load average: 0.84, 0.90, 0.91
+</pre></div>
+</div>
+<p><em>SSH</em> supports running commands from a text file. Here is an example command
+file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ cat ex2.txt
+uname -a
+df -H
+uptime
+</pre></div>
+</div>
+<p>The normal <em>SSH</em> command to run this locally is:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>picam<span class="w"> </span>&lt;<span class="w"> </span>commands.txt
+</pre></div>
+</div>
+<p>Unfortunately, the <em>Sphinx</em> extension I use to include program output in my
+documents cannot handle file redirection like this. We could transfer the
+command file to the <em>Pi</em> and run it there but we would miss the individual
+command output results. A solution (maybe not the best) is to create a simple
+local <em>Python</em> program that reads our command file and runs the <em>SSH</em> commands for
+us. (<em>Python</em> is great for creating simple automation tasks like this (see
+<span id="id1">Weigart [<a class="reference internal" href="../../zbibliography.html#id6" title="Al Weigart. Automate the Boring Stuff with Python. No Starch Press, 2007. ISBN 978-1-59327-599-0.">Wei07</a>]</span>).</p>
+<p>Here is a basic <em>Python</em> snippet using this approach:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="linenos">2</span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;ssh&#39;</span><span class="p">,</span><span class="s1">&#39;picam&#39;</span><span class="p">,</span> <span class="s1">&#39;uptime&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>And here is the program output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python code/ex3.py
+ 08:31:12 up 246 days, 18:46,  2 users,  load average: 0.84, 0.90, 0.91
+</pre></div>
+</div>
+<p>This works! We now need to wrap this up in a loop that reads a line from the
+command file and creates the list of command parts. <em>Python</em> is up to this job!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">uname</span> <span class="o">-</span><span class="n">a</span>
+<span class="linenos">2</span><span class="n">uptime</span>
+<span class="linenos">3</span><span class="n">df</span> <span class="o">-</span><span class="n">H</span>
+<span class="linenos">4</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python code/ex4.py code/ex1.txt
+Darwin MBair-M1 23.2.0 Darwin Kernel Version 23.2.0: Wed Nov 15 21:53:34 PST 2023; root:xnu-10002.61.3~2/RELEASE_ARM64_T8103 arm64
+ 8:31  up 1 day,  4:36, 2 users, load averages: 1.44 1.34 1.35
+Filesystem        Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s1s1    494G     10G    372G     3%    394k  3.6G    0%   /
+devfs             204k    204k      0B   100%     691     0  100%   /dev
+/dev/disk3s6      494G   2148M    372G     1%       2  3.6G    0%   /System/Volumes/VM
+/dev/disk3s2      494G   6007M    372G     2%    1.1k  3.6G    0%   /System/Volumes/Preboot
+/dev/disk3s4      494G     15M    372G     1%      67  3.6G    0%   /System/Volumes/Update
+/dev/disk1s2      524M   6312k    506M     2%       3  4.9M    0%   /System/Volumes/xarts
+/dev/disk1s1      524M   6394k    506M     2%      31  4.9M    0%   /System/Volumes/iSCPreboot
+/dev/disk1s3      524M    549k    506M     1%      39  4.9M    0%   /System/Volumes/Hardware
+/dev/disk3s5      494G    103G    372G    22%    1.4M  3.6G    0%   /System/Volumes/Data
+map auto_home       0B      0B      0B   100%       0     0     -   /System/Volumes/Data/home
+******************************
+******************************
+******************************
+</pre></div>
+</div>
+<p>Generating this code was not too difficult, considering the need to read the
+command line, make sure the lines were not blank, then creating a list of final
+command parts to be proceeded by the <strong>subprocess.run</strong> code.</p>
+<p>However, the output displayed here does not currently match what I see when
+running this code locally. It appears that output buffering by the <em>Sphinx</em>
+extension is not dealing with this well. A solution is to generate the output
+lines in the <em>Python</em> code and dump that output at the end of the code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">uname</span> <span class="o">-</span><span class="n">a</span>
+<span class="linenos">2</span><span class="n">uptime</span>
+<span class="linenos">3</span><span class="n">df</span> <span class="o">-</span><span class="n">H</span>
+<span class="linenos">4</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">SSH Remote Control</a><ul>
+<li><a class="reference internal" href="#developing-for-a-cluster">Developing for a cluster</a></li>
+<li><a class="reference internal" href="#test-setup">Test Setup</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../../sphinx-testing.html"
+                          title="previous chapter">Sphinx Testing</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../../zbibliography.html"
+                          title="next chapter">Bibliography</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/content/pi/ssh-remote-control.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../zbibliography.html" title="Bibliography"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../../sphinx-testing.html" title="Sphinx Testing"
+             >previous</a> |</li>
+          <li><img src="../../_static/py.svg" alt="Python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../../index.html">Tech Blog 0.1.0 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">SSH Remote Control</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="search" name="q" id="search-box" />
+          <input type="submit" value="Go" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2024, Roie Black.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    
+    
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Last updated on None.
+    
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+
+  </body>
+</html>

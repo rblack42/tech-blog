@@ -1,0 +1,16 @@
+Raspberry Pi Assembly Language
+##############################
+
+Since I have retired, I have stopped using assembly language at any level. As
+part of my work on parallel programming, I find myself engaged in building
+several light-weight clusters to test high performance coding ideas.
+
+I have found that a good way to figure out how things work in code ay the most
+basic level on a machine is ot generate assembly language code while processing
+a high ;evel program. Fortunately, many compilers make this a simple task. In
+this note, we will create a simple **C** program, and then generate assembly
+language using the *Gun* **C** compiler:
+
+.. literalinclude::  ../code/hello.c
+   :language: c
+   :linenos:
